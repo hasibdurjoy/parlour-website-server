@@ -37,6 +37,12 @@ async function run() {
             res.json(reviews);
         });
 
+        app.get('/bookings', async (req, res) => {
+            const cursor = bookingCollection.find({});
+            const bookings = await cursor.toArray();
+            res.json(bookings);
+        });
+
         app.get('/services/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
