@@ -22,12 +22,19 @@ async function run() {
         const database = client.db('parlour-website');
         const servicesCollection = database.collection('services');
         const bookingCollection = database.collection('bookings');
+        const reviewCollection = database.collection('reviews');
         const usersCollection = database.collection('users');
 
         app.get('/services', async (req, res) => {
             const cursor = servicesCollection.find({});
             const services = await cursor.toArray();
             res.json(services);
+        });
+
+        app.get('/reviews', async (req, res) => {
+            const cursor = reviewCollection.find({});
+            const reviews = await cursor.toArray();
+            res.json(reviews);
         });
 
         app.get('/services/:id', async (req, res) => {
