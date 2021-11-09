@@ -89,6 +89,16 @@ async function run() {
             res.json(bookings);
         });
 
+        app.get('/users', async (req, res) => {
+            const role = req.query.role;
+
+            const query = { role: role }
+
+            const cursor = usersCollection.find(query);
+            const users = await cursor.toArray();
+            res.json(users);
+        });
+
         app.get('/users/:email', async (req, res) => {
             const email = req.params.email;
             const query = { email: email };
