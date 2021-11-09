@@ -117,6 +117,19 @@ async function run() {
             res.json(result)
         });
 
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            console.log(service);
+            const result = await servicesCollection.insertOne(service);
+            res.json(result)
+        });
+
+        app.post('/reviews', async (req, res) => {
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
+            res.json(result)
+        });
+
         app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
